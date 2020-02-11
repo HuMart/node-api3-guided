@@ -12,7 +12,7 @@ const server = express();
 
 function logger(req, res, next) {
   const { method, originalUrl } = req;
-  console.log(`${method} to ${originalUrl}`);
+  console.log(`${method} to ${originalUrl} at`);
 
   next();
 }
@@ -38,7 +38,7 @@ function gatekeeper(req, res, next) {
 // this is a global middleware (cares about all request)
 server.use(express.json());
 server.use(helmet());
-server.use(morgan());
+server.use(morgan())
 server.use(logger);
 server.use(echo);
 server.use(gatekeeper);
